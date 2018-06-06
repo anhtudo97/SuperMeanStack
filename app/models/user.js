@@ -14,7 +14,7 @@ var UserSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	password: {
+	email: {
 		type: String,
 		lowercase: true,
 		required: true,
@@ -24,11 +24,6 @@ var UserSchema = new Schema({
 
 UserSchema.pre('save', function(next) {
 	let user = this;
-	// bcrypt.hash(user.password, null, null, (err, hash) => {
-	// 	if (err) return next(err);
-	// 	user.password = hash;
-	// 	next();
-	// });
 	bcrypt.genSalt(10, function(err, salt) {
 		bcrypt.hash(user.username, salt, function(err, hash) {
 			// Store hash in your password DB.

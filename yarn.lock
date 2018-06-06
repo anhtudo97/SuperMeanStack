@@ -229,6 +229,10 @@ express@^4.16.3:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
+ext@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/ext/-/ext-0.6.1.tgz#0a5218916b54ce04ae5ebbaa0893a6180f6b0f33"
+
 finalhandler@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.1.1.tgz#eebf4ed840079c83f4249038c9d703008301b105"

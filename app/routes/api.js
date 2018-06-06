@@ -1,7 +1,6 @@
 const User = require('../models/user');
 
 module.exports = router => {
-	// http://localhost:8000/users
 	router.post('/users', (req, res) => {
 		let user = new User({
 			username: req.body.username,
@@ -16,13 +15,13 @@ module.exports = router => {
 			req.body.email == null ||
 			req.body.email == ''
 		) {
-			res.send('Ensure username, password, email were provided');
+			res.json({ success: false, message: 'Ensure username, password, email were provided' });
 		} else {
 			user.save(err => {
 				if (err) {
-					res.send('Username or email is existing');
+					res.json({ success: false, message: 'Username or email is existing' });
 				} else {
-					res.send('User is created');
+					res.json({ success: true, message: 'User is created' });
 				}
 			});
 		}
