@@ -1,4 +1,5 @@
 const User = require('../models/user');
+var jwt = require('jsonwebtoken');
 
 module.exports = function(router) {
 
@@ -54,6 +55,10 @@ module.exports = function(router) {
                         if (!validPassword) {
                             res.json({ success: false, message: 'Could not authentication passoword' });
                         } else {
+                            jwt.sign({
+                                username: user.username,
+                                email: user.email
+                            }, 'secret', { expiresIn: '1h' });
                             res.json({ success: true, message: 'User authenticated' });
                         }
                     }
