@@ -1,34 +1,38 @@
 angular.module('appRoutes', ['ngRoute']).config([
-	'$routeProvider',
-	'$locationProvider',
-	($routeProvider, $locationProvider) => {
-		$routeProvider
-			.when('/', {
-				templateUrl: 'app/views/pages/home.html',
-			})
+    '$routeProvider',
+    '$locationProvider',
+    ($routeProvider, $locationProvider) => {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'app/views/pages/home.html',
+            })
 
-			.when('/about', {
-				templateUrl: 'app/views/pages/about.html',
-			})
+        .when('/about', {
+            templateUrl: 'app/views/pages/about.html',
+        })
 
-			.when('/register', {
-				templateUrl: 'app/views/pages/users/register.html',
-				controller: 'regCtrl',
-				controllerAs: 'register',
-			})
+        .when('/register', {
+            templateUrl: 'app/views/pages/users/register.html',
+            controller: 'regCtrl',
+            controllerAs: 'register',
+        })
 
-			.when('/login', {
-				templateUrl: 'app/views/pages/users/login.html',
-			})
+        .when('/login', {
+            templateUrl: 'app/views/pages/users/login.html',
+        })
 
-			.when('/logout', {
-				templateUrl: 'app/views/pages/users/logout.html',
-			})
+        .when('/logout', {
+            templateUrl: 'app/views/pages/users/logout.html',
+        })
 
-			.otherwise({ redirectTo: '/' });
-		$locationProvider.html5Mode({
-			enabled: true,
-			requireBase: false,
-		});
-	},
+        .when('/profile', {
+            templateUrl: 'app/views/pages/users/profile.html',
+        })
+
+        .otherwise({ redirectTo: '/' });
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false,
+        });
+    },
 ]);

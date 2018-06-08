@@ -34,7 +34,7 @@
     <title>Theme Template for Bootstrap</title>
 </head>
 
-<body ng-controller="mainCtrl as main">
+<body ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak>
 
     <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -53,13 +53,13 @@
                     <li class="active">
                         <a href="/">Home</a>
                     </li>
-                    <li>
+                    <li ng-show="!main.isLoggedIn">
                         <a href="/login">Login</a>
                     </li>
-                    <li>
+                    <li ng-show="!main.isLoggedIn">
                         <a href="/register">Register</a>
                     </li>
-                    <li>
+                    <li ng-show="main.isLoggedIn">
                         <a href="/logout" ng-click="main.logout()">Logout</a>
                     </li>
                     <li class="dropdown">
@@ -85,6 +85,9 @@
                                 <a href="#">One more separated link</a>
                             </li>
                         </ul>
+                    </li>
+                    <li ng-show="main.isLoggedIn">
+                        <a href="/profile">{{main.username}}</a>
                     </li>
                 </ul>
             </div>
