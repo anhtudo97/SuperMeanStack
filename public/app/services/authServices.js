@@ -19,13 +19,15 @@
 				return false;
 			};
 
-			authFactory.getUser = function(){
-				if(AuthToken.getToken()){
+			// Function to set token for social media logins
+
+			authFactory.getUser = function() {
+				if (AuthToken.getToken()) {
 					return $http.post('/api/me');
-				}else{
-					$q.reject({ message: 'User has no token' })
+				} else {
+					$q.reject({ message: 'User has no token' });
 				}
-			}
+			};
 
 			authFactory.logout = function() {
 				AuthToken.setToken();
@@ -54,19 +56,19 @@
 			return authTokenFactory;
 		})
 
-		.factory('AuthInterceptors', function(AuthToken){
+		.factory('AuthInterceptors', function(AuthToken) {
 			var authInterceptorFactory = {};
 
-			authInterceptorFactory.request= function(config){
+			authInterceptorFactory.request = function(config) {
 				var token = AuthToken.getToken();
 
-				if(token){
+				if (token) {
 					config.headers['x-access-token'] = token;
 				}
 
 				return config;
-			}
+			};
 
 			return authInterceptorFactory;
-		})
+		});
 })();

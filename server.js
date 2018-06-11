@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const port = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const path = require('path');
+const https = require('https');
 const passport = require('passport');
 const social = require('./app/passport/passport')(app, passport);
 
@@ -17,18 +18,21 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(express.static(__dirname + '/public'));
 app.use('/api', appRoutes);
 
-mongoose.connect('mongodb://localhost:27017/tutorial', err => {
-    if (err) {
-        console.log('Not connected to the database ' + err);
-    } else {
-        console.log('Successfully connected to MongoDb');
-    }
-});
+mongoose.connect(
+	'mongodb://localhost:27017/tutorial',
+	err => {
+		if (err) {
+			console.log('Not connected to the database ' + err);
+		} else {
+			console.log('Successfully connected to MongoDb');
+		}
+	}
+);
 
 app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname + '/public/app/views/index.html'));
+	res.sendfile(path.join(__dirname + '/public/app/views/index.html'));
 });
 
 app.listen(port, () => {
-    console.log('Server is listening on port ' + port);
+	console.log('Server is listening on port ' + port);
 });

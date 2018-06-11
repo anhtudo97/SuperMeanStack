@@ -14,8 +14,7 @@ angular
 				app.errorMsg = false;
 				console.log('form submit');
 
-				User.create(app.regData)
-				.then(function(data) {
+				User.create(app.regData).then(function(data) {
 					if (data.data.success) {
 						app.loading = false;
 						// Create Success message
